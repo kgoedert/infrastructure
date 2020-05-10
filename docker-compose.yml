@@ -1,0 +1,16 @@
+version: "2"
+networks:
+  hello:
+    driver: bridge
+
+services:
+  postgresql:
+    build: postgresql
+    volumes:
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data/:rw
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - hello
